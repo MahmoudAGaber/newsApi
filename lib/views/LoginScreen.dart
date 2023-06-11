@@ -146,7 +146,7 @@ class _LoginScreenState extends State<LoginScreen> {
   void _authenticateWithEmailAndPassword(context) {
     if (_formKey.currentState!.validate()) {
       if(_emailController.text == "admin" && _passwordController.text == "admin"){
-        Navigator.push(context,MaterialPageRoute(builder:(((context) => HomeView()))));
+        Navigator.pushReplacement(context,MaterialPageRoute(builder:(((context) => HomeView()))));
       }
       else{
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("UserName or Password wrong")));
