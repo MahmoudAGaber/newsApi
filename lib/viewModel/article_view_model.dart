@@ -5,23 +5,21 @@ import 'package:news/services/article_service.dart';
 
 class ViewModelArticle extends ChangeNotifier{
 
-  List<Article> _articleList = [];
-  List<Article> _articleListByCategory = [];
-  List<String> articleListFilter=[];
+  List<Article>? articleList = [];
+  List<Article>? articleListByCategory = [];
 
   Future<void>fetchArticle() async {
 
-      _articleList = (await NewsApi().fetchData())!;
+      articleList = await NewsApi().fetchData();
+      notifyListeners();
   }
 
-  Future<void>fetchArticleByCategory(String category) async {
+  Future<void>fetchArticleByCategory() async {
 
-    _articleListByCategory = (await NewsApi().fetchDataByCategory(category))!;
-
+    articleListByCategory = await NewsApi().fetchDataByCategory("category=business");
+    notifyListeners();
   }
 
-  List<Article> get articlesList => _articleList;
-  List<Article> get articlesListByCategory => _articleListByCategory;
 
 
 }
